@@ -12,7 +12,15 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+        $middleware->alias([
+            'auth:api' => \Tymon\JWTAuth\Http\Middleware\Authenticate::class,
+        ]);
+
+        // Konfigurasi middleware untuk group 'api'
+        $middleware->api([
+            \Illuminate\Http\Middleware\AddLinkHeadersForPreloadedAssets::class,
+            \Illuminate\Routing\Middleware\SubstituteBindings::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //
