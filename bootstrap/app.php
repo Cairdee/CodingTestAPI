@@ -15,6 +15,9 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'auth:api' => \Tymon\JWTAuth\Http\Middleware\Authenticate::class,
         ]);
+        $middleware->alias([
+        'check.jwt.session' => \App\Http\Middleware\CheckJWTFromSession::class,
+    ]);
 
         // Konfigurasi middleware untuk group 'api'
         $middleware->api([
