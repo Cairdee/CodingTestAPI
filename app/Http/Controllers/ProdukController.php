@@ -17,7 +17,7 @@ class ProdukController extends Controller
                 $query->where('nama_produk', 'like', "%{$search}%")
                       ->orWhere('sku', 'like', "%{$search}%");
             }
-            if ($status = $request->get('status')) {
+            if ($status = $request->get('status_filter')) { // Sesuaikan dengan nama filter di DataTable
                 $query->where('status', $status);
             }
             $data = $query->select('id', 'sku', 'nama_produk', 'hpp', 'stok', 'status');
@@ -49,28 +49,28 @@ class ProdukController extends Controller
         return redirect()->route('produks.index')->with('success', 'Produk created successfully');
     }
 
-    public function show($id)
+    public function show($produk) // Ubah dari $id ke $produk
     {
-        $produk = Produk::findOrFail($id);
+        $produk = Produk::findOrFail($produk);
         return view('produk.show', compact('produk'));
     }
 
-    public function edit($id)
+    public function edit($produk) // Ubah dari $id ke $produk
     {
-        $produk = Produk::findOrFail($id);
+        $produk = Produk::findOrFail($produk);
         return view('produk.edit', compact('produk'));
     }
 
-    public function update(ProdukRequest $request, $id)
+    public function update(ProdukRequest $request, $produk) // Ubah dari $id ke $produk
     {
-        $produk = Produk::findOrFail($id);
+        $produk = Produk::findOrFail($produk);
         $produk->update($request->validated());
         return redirect()->route('produks.index')->with('success', 'Produk updated successfully');
     }
 
-    public function destroy($id)
+    public function destroy($produk) // Ubah dari $id ke $produk
     {
-        $produk = Produk::findOrFail($id);
+        $produk = Produk::findOrFail($produk);
         $produk->delete();
         return redirect()->route('produks.index')->with('success', 'Produk deleted successfully');
     }

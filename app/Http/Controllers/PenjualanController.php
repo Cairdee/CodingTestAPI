@@ -64,9 +64,9 @@ class PenjualanController extends Controller
         });
     }
 
-    public function show($nomer_penjualan)
+    public function show($penjualan)
 {
-    $head = HeadPenjualan::with('details')->where('nomer_penjualan', $nomer_penjualan)->firstOrFail();
+    $head = HeadPenjualan::with('details')->where('nomer_penjualan', $penjualan)->firstOrFail();
     return view('penjualan.show', compact('head'));
 }
 

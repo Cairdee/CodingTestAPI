@@ -21,4 +21,3 @@ Route::get('/penjualans/{nomer_penjualan}/add-detail', [PenjualanController::cla
 Route::post('/penjualans/detail', [PenjualanController::class, 'createDetail'])->name('detail-penjualans.store');
 Route::get('/laporan-penjualan', [PenjualanController::class, 'laporan'])->name('penjualans.laporan');
 Route::post('/penjualans/create-head', [PenjualanController::class, 'createHead'])->name('penjualans.createHead');
-Route::get('/penjualans/{nomer_penjualan}/add-detail', [PenjualanController::class, 'addDetailForm'])->name('penjualans.addDetailForm');
